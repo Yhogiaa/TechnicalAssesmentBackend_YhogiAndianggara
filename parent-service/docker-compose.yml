@@ -1,0 +1,69 @@
+version: '3'
+services:
+  config:
+    container_name: config
+    image: com.bootcamp/bootcamp-config:latest
+    ports:
+      - 8888:8888
+  registry:
+    container_name: registry
+    image: com.bootcamp/eureka:latest
+    environment:
+      - CONFIG_SERVER=http://config:8888
+      - REGISTRY_SERVER=http://registry:8761/eureka/
+    restart: on-failure
+    depends_on:
+      - config
+    ports:
+      - 8761:8761
+  gateway:
+    container_name: gateway
+    image: com.bootcamp/gateway-config:latest
+    environment:
+      - CONFIG_SERVER=http://config:8888
+      - REGISTRY_SERVER=http://registry:8761/eureka/
+    restart: on-failure
+    depends_on:
+      - config
+      - registry
+    ports:
+      - 8080:8080
+  book:
+    container_name: book
+    image: com.bootcamp/book:latest
+    environment:
+      - CONFIG_SERVER=http://config:8888
+      - REGISTRY_SERVER=http://registry:8761/eureka/
+      - DB_HOST=10.0.75.1
+    restart: on-failure
+    depends_on:
+      - config
+      - registry
+      - gateway
+  student:
+    container_name: student
+    image: com.bootcamp/student:latest
+    environment:
+      - CONFIG_SERVER=http://config:8888
+      - REGISTRY_SERVER=http://registry:8761/eureka/
+      - DB_HOST=10.0.75.1
+    restart: on-failure
+    depends_on:
+      - config
+      - registry
+      - gateway
+      - book
+  transaction:
+    container_name: transaction
+    image: com.bootcamp/transaction:latest
+    environment:
+      - CONFIG_SERVER=http://config:8888
+      - REGISTRY_SERVER=http://registry:8761/eureka/
+      - DB_HOST=10.0.75.1
+    restart: on-failure
+    depends_on:
+      - config
+      - registry
+      - gateway
+      - book
+      - student
