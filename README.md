@@ -1,19 +1,19 @@
-"# TechnicalAssesmentBackend_YhogiAndianggara" 
+"TechnicalAssesmentBackend_YhogiAndianggara" 
 
 
-no.1
+STEP 1
 
-    make database use data in folder pinjambuku
+    Lakukan query menggunakan data sql yang ada pada folder pinjambuku untuk mendapatkan data dan table yang di butuhkan.
 
-no.2 
+STEP 2 
 
-    do mvn clean install folder response to make jar response
+    Buat jar dari project respons yang ada pada folder respons menggunakan perintah "mvn clean install" sehingga fungsinya dapat digunakan untuk service yang ada.
 
-no.3
+STEP 3
 
-    do mvn clean install folder parent-service to make emages for docker
+    Lakukan peritah "mvn clean install" pada parent-service untuk menghasilkan images docker dari service service yang ada.
 
-no.4
+STEP 4
 
-    do docker-compose up -d
+    Lakukan perintah "docker-compose up -d" untuk menjalankan untuk menjalankan image yang telah di set pada docker compose
 
