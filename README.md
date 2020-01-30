@@ -17,5 +17,3 @@ no.4
 
     do docker-compose up -d
 
-
-anda dapat melakukan penginputan pada table terakhir karena ketika docker-compose up -d di jalankan makan akan otomatis membuat table, tetapi belom datanya
